@@ -1,7 +1,7 @@
 Cinema API
 ==========
 
-API and scraper for dominican site https://cinema.com.do.
+Web API and scraper for dominican site https://cinema.com.do.
 
 # Requirements
 - Node.js - ver. >= 10.0.0
