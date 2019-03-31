@@ -15,12 +15,12 @@ Web API and scraper for Dominican site https://cinema.com.do.
 
 # Endpoints
 
-# GET General Data
+## GET General Data
 Get all cities and the cinemas for each.
 
-- Endpoint: `/api/data`
+- `/api/data`
 
-# GET Cinema
+## GET Cinema
 Get details, rooms and movies schedule for a cinema
 
-- Endpoint: `/api/cinemas/:id`
+- `/api/cinemas/:id`
