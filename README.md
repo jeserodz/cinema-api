@@ -1,7 +1,7 @@
 Cinema API
 ==========
 
-Web API and scraper for Dominican site https://cinema.com.do.
+Web API and scraper for dominican website https://cinema.com.do.
 
 # Requirements
 - Node.js - ver. >= 10.0.0
@@ -18,9 +18,14 @@ Web API and scraper for Dominican site https://cinema.com.do.
 ## GET General Data
 Get all cities and the cinemas for each.
 
-- `/api/data`
+- `/api/api/v1/data`
 
 ## GET Cinema
 Get details, rooms and movies schedule for a cinema
 
-- `/api/cinemas/:id`
+- `/api/api/v1/cinemas/:id`
+
+## GET Movie
+Get details for a movie
+
+- `/api/api/v1/movie/:id`
