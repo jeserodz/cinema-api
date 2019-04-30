@@ -18,11 +18,14 @@ const htmlParsingQueue = new Queue('html-parsing-queue', {
 
 htmlParsingQueue.process(async (job, done) => {
   console.log('HTML Parsing Queue started.');
-
+  let progress = 0;
   const data = await ParserService.parseHomePage();
   redis.hset('cinema', '/api/v1/data', JSON.stringify(data));
 
-  const movieIds = [];
+  progress = 25;
+  job.progress(progress);
+
+  let movieIds = [];
 
   await Promise.all(data.cinemas.map(async c => {
     try {
@@ -37,16 +40,21 @@ htmlParsingQueue.process(async (job, done) => {
     }
   }));
 
-  await Promise.all(uniq(movieIds).map(async id => {
+  progress += 25;
+  job.progress(progress);
+
+  movieIds = uniq(movieIds);
+
+  for(id of movieIds) {
     try {
       const movie = await ParserService.parseMoviePage(id);
       redis.hset('cinema', `/api/v1/movies/${movie.id}`, JSON.stringify(movie));
-      return movie;
+      progress += Math.floor(50 / movieIds.length);
+      job.progress(progress);
     } catch (e) {
       console.log(`Error parsing movie ID ${id}`, e);
-      return;
     }
-  }));
+  }
 
   done(null);
 });
