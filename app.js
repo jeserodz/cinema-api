@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const { cache } = require('./middlewares');
 const { ParserService } = require('./services');
 const jobs = require('./jobs');
@@ -10,6 +11,7 @@ jobs.htmlParsingQueue.add({}, {
 const app = express();
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use('/jobs', jobs.ui);
 
