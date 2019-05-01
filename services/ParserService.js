@@ -46,6 +46,7 @@ async function parseCinemaPage(cinemaId) {
   const { document } = new JSDOM(page).window;
 
   const cinema = {
+    id: cinemaId,
     name: '',
     address: '',
     phone: '',
