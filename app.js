@@ -9,6 +9,8 @@ jobs.htmlParsingQueue.add({}, {
 
 const app = express();
 
+app.set('view engine', 'ejs');
+
 app.use('/jobs', jobs.ui);
 
 app.use('/api/v1/', cache);
@@ -44,6 +46,14 @@ app.get('/api/v1/movies/:id', async (req, res) => {
   } catch (error) {
     return res.status(500).send(error.toString());
   }
+});
+
+app.get('/privacy', async (req, res) => {
+  return res.render('privacy-policy');
+});
+
+app.get('/', async (req, res) => {
+  return res.redirect('/api/v1/data');
 });
 
 module.exports = app;
