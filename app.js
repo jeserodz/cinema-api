@@ -5,7 +5,9 @@ const { ParserService } = require('./services');
 const jobs = require('./jobs');
 
 jobs.htmlParsingQueue.add({}, {
-  repeat: { cron: '*/5 * * * *' }
+  repeat: { cron: '*/5 * * * *' },
+  timeout: 180000, // 3 mins
+  attempts: 2
 });
 
 const app = express();
